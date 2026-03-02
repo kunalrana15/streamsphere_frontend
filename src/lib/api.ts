@@ -23,7 +23,7 @@ api.interceptors.response.use(
         return api(originalRequest); // Retry the original request
       } catch (refreshError) {
         // Refresh failed (session expired), boot user to login
-        window.location.href = '/login';
+        // window.location.href = '/login';
         return Promise.reject(refreshError);
       }
     }
