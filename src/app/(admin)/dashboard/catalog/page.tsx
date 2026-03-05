@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { catalogService } from "@/src/services/catalogService";
 import { Title } from "@/src/types/catalog";
+import Link from "next/link";
 import { Pencil, Trash2, X, Plus, Save, Globe, Clapperboard } from "lucide-react";
 
 export default function CatalogPage() {
@@ -85,7 +86,9 @@ export default function CatalogPage() {
             
             <div className="p-5">
               <div className="flex justify-between items-start mb-2">
-                <h3 className="text-lg font-bold line-clamp-1">{title.name}</h3>
+                <Link href={`/dashboard/catalog/${title._id}`} >
+                  <h3 className="text-lg font-bold line-clamp-1">{title.name}</h3>
+                </Link>
                 <span className="text-[10px] bg-zinc-800 px-2 py-1 rounded text-zinc-400 uppercase font-bold">{title.type}</span>
               </div>
               
