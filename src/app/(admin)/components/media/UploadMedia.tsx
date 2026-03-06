@@ -25,11 +25,22 @@ export default function UploadMedia({ titleId }: Props) {
         if(!file) return ;
 
         try {
+
+            setUploading(true);
+
             const { presignedUrl,mediaId } = await mediaService.getPresignedUrl(titleId,file.name);
 
-            // after presigned generation upload the video to presigned Url
+            // after presigned generation upload the video to presigned Url in binary format
+            await fetch(presignedUrl,{
+                method: "PUT",
+                headers: {
+                    "content-Type": file.type
+                },
+                body: file
+            })
 
             // Notify backend upload complete by completeUpload api call
+            await mediaService.completeUpload(mediaId);
 
             alert("Upload Successfull");
 
